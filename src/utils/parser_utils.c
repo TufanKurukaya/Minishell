@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkurukay <tkurukay@student.42kocaeli.com.t +#+  +:+       +#+        */
+/*   By: tkurukay <tkurukay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 11:15:45 by tkurukay          #+#    #+#             */
-/*   Updated: 2024/08/15 03:36:06 by tkurukay         ###   ########.fr       */
+/*   Updated: 2024/08/18 11:32:59 by tkurukay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 #include <sys/stat.h>
 #include <unistd.h>
 
+/*
+- Checks if the file in the path variable is a directory.
+- path değişkenindeki dosyanın bir dizin olup olmadığını kontrol eder.
+*/
 int	is_directory(char *path)
 {
 	struct stat	path_stat;
@@ -24,6 +28,10 @@ int	is_directory(char *path)
 	return (S_ISDIR(path_stat.st_mode));
 }
 
+/*
+- Checks if the file in the path variable is executable.
+- path değişkenindeki dosyanın çalıştırılabilir olup olmadığını kontrol eder.
+*/
 char	*handle_executable_file(t_token *node, char *path)
 {
 	char	*tmp;
@@ -48,6 +56,10 @@ char	*handle_executable_file(t_token *node, char *path)
 	return (NULL);
 }
 
+/*
+- Checks if the file in the path variable is executable (duplicate).
+- path değişkenindeki dosyanın çalıştırılabilir olup olmadığını kontrol eder.
+*/
 char	*finding_path(t_data *data, t_token *node)
 {
 	t_env	*env;
@@ -73,6 +85,10 @@ char	*finding_path(t_data *data, t_token *node)
 	return (check_path(path, node));
 }
 
+/*
+- Converts t_env (linked list) variables to char **.
+- t_env(sıralı liste) değişkenlerini char ** dönüştürür.
+*/
 char	**env_to_char(t_data *data)
 {
 	t_env	*node;
@@ -102,6 +118,10 @@ char	**env_to_char(t_data *data)
 	return (env);
 }
 
+/*
+- Converts t_token (linked list) variables to char **.
+- t_token(sıralı liste) değişkenlerini char ** dönüştürür.
+*/
 char	**get_command_args(t_token *node)
 {
 	t_token	*tmp;

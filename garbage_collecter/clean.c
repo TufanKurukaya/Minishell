@@ -3,16 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   clean.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkurukay <tkurukay@student.42kocaeli.com.t +#+  +:+       +#+        */
+/*   By: tkurukay <tkurukay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 11:13:11 by tkurukay          #+#    #+#             */
-/*   Updated: 2024/08/15 03:39:40 by tkurukay         ###   ########.fr       */
+/*   Updated: 2024/08/18 12:22:08 by tkurukay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 #include <stdlib.h>
 
+/*
+- Completely frees the t_malloc structure (linked list).
+- t_malloc	yapısını(sıralı liste) tamamen serbest bırakır.
+*/
 void	gc_free(void)
 {
 	t_malloc	*tmp;
@@ -28,6 +32,10 @@ void	gc_free(void)
 	}
 }
 
+/*
+- Removes and frees the memory area given as a parameter from the t_malloc structure (linked list).
+- Parametre olarak verilen bellek alanını t_malloc yapısından(sıralı liste) çıkarır ve serbest bırakır.
+*/
 void	garbage_collecter(void *ptr)
 {
 	t_malloc	*garbage_c;
@@ -51,6 +59,10 @@ void	garbage_collecter(void *ptr)
 	}
 }
 
+/*
+- Removes the t_token structure (linked list) from the t_malloc structure (linked list) and completely frees it.
+- t_token yapısını(sıralı liste) t_malloc yapısından(sıralı liste) çıkarır ve tamamen serbest bırakır.
+*/
 void	free_token(t_data *data)
 {
 	t_token	*token;

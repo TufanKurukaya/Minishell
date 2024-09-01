@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkurukay <tkurukay@student.42kocaeli.com.t +#+  +:+       +#+        */
+/*   By: tkurukay <tkurukay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 11:16:38 by tkurukay          #+#    #+#             */
-/*   Updated: 2024/08/15 03:40:17 by tkurukay         ###   ########.fr       */
+/*   Updated: 2024/08/18 11:34:54 by tkurukay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@
 
 int		g_signal = 0;
 
+/*
+- Initializes the data within the struct that holds all of minishell's data.
+- minishell'in tüm verilerini tutan struct'in içindeki verileri başlatır.
+*/
 void	initilazor(t_data *data)
 {
 	data->env = gc_malloc(sizeof(t_env));
@@ -31,6 +35,10 @@ void	initilazor(t_data *data)
 	data->here = 0;
 }
 
+/*
+- Creates the necessary env variables for minishell.
+- minishell için gerekli env değişkenlerini oluşturur.
+*/
 void	create_env(char **envp, t_data *data)
 {
 	t_env	*node;
@@ -55,6 +63,10 @@ void	create_env(char **envp, t_data *data)
 	update_oldpwd(data, NULL);
 }
 
+/*
+- Returns the env variable based on the key value.
+- key değerine göre env değişkenini döndürür.
+*/
 t_env	*get_env(t_data *data, char *key)
 {
 	t_env	*node;
@@ -69,6 +81,10 @@ t_env	*get_env(t_data *data, char *key)
 	return (NULL);
 }
 
+/*
+- The main loop of minishell.
+- minishell'in ana döngüsüdür.
+*/
 void	cycle(t_data *data)
 {
 	while (1)

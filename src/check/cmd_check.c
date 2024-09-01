@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_check.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkurukay <tkurukay@student.42kocaeli.com.t +#+  +:+       +#+        */
+/*   By: tkurukay <tkurukay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 11:14:22 by tkurukay          #+#    #+#             */
-/*   Updated: 2024/08/15 03:39:51 by tkurukay         ###   ########.fr       */
+/*   Updated: 2024/08/15 23:54:04 by tkurukay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/libft.h"
 #include "../../inc/minishell.h"
+
 
 int	check_pipes(t_token *node)
 {

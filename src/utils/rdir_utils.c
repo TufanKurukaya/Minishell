@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rdir_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkurukay <tkurukay@student.42kocaeli.com.t +#+  +:+       +#+        */
+/*   By: tkurukay <tkurukay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 11:15:48 by tkurukay          #+#    #+#             */
-/*   Updated: 2024/08/15 03:36:06 by tkurukay         ###   ########.fr       */
+/*   Updated: 2024/08/18 11:37:59 by tkurukay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@
 #include <sys/errno.h>
 #include <unistd.h>
 
+/*
+- Checks file permissions.
+- Dosya izinlerini kontrol eder.
+*/
 int	permission_check(t_token *node)
 {
 	if (rdir(node) == 1)
@@ -36,6 +40,10 @@ int	permission_check(t_token *node)
 	return (0);
 }
 
+/*
+- Performs the heredoc operation.
+- Heredoc işlemini yapar.
+*/
 void	handle_heredoc(char *delimiter, t_data *data)
 {
 	char	*line;
@@ -63,6 +71,10 @@ void	handle_heredoc(char *delimiter, t_data *data)
 	close(fd);
 }
 
+/*
+- Executes all heredocs.
+- Tüm heredocları çalıştırır.
+*/
 void	exec_heredoc(t_token *node, t_data *data)
 {
 	while (node)
@@ -73,6 +85,10 @@ void	exec_heredoc(t_token *node, t_data *data)
 	}
 }
 
+/*
+- Sets the file descriptors for redirections.
+- redirectionların fd'lerini ayarlar.
+*/
 void	rdir_dup(int fd, int std, t_token *node)
 {
 	if (fd == -1)
@@ -84,6 +100,10 @@ void	rdir_dup(int fd, int std, t_token *node)
 	close(fd);
 }
 
+/*
+- Performs redirection operations.
+- redirection işlemlerini yapar.
+ */
 void	handle_redirection(t_token *node, t_data *data)
 {
 	if (data->here)

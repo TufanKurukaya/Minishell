@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_echo.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkurukay <tkurukay@student.42kocaeli.com.t +#+  +:+       +#+        */
+/*   By: tkurukay <tkurukay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 11:14:27 by tkurukay          #+#    #+#             */
-/*   Updated: 2024/08/15 03:36:06 by tkurukay         ###   ########.fr       */
+/*   Updated: 2024/08/18 11:12:45 by tkurukay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 #include "../../inc/minishell.h"
 #include <stdio.h>
 
+/*
+- Compares two strings ignoring case sensitivity.
+- Büyük küçük harf duyarlılığını yok sayarak iki stringi karşılaştırır.
+*/
 int	is_echo(char *str1, char *str2)
 {
 	int	i;
@@ -27,6 +31,11 @@ int	is_echo(char *str1, char *str2)
 	return (str1[i] - str2[i]);
 }
 
+
+/*
+- Checks the flag for the echo command.
+- echo komutunun flag kontrolünü yapar.
+*/
 int	check_flags(t_token *node)
 {
 	int	i;
@@ -45,6 +54,11 @@ int	check_flags(t_token *node)
 	return (1);
 }
 
+
+/*
+- The equivalent of the echo command in Bash for the minishell.
+- Bash deki echo komutunun minishelldeki karşılığıdır.
+*/
 void	cmd_echo(t_token *node)
 {
 	int	check;

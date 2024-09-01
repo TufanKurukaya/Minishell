@@ -3,16 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkurukay <tkurukay@student.42kocaeli.com.t +#+  +:+       +#+        */
+/*   By: tkurukay <tkurukay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 11:14:57 by tkurukay          #+#    #+#             */
-/*   Updated: 2024/08/15 03:36:06 by tkurukay         ###   ########.fr       */
+/*   Updated: 2024/08/18 11:37:18 by tkurukay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/libft.h"
 #include "../../inc/minishell.h"
 
+/*
+- Converts the given arguments (two-dimensional matrix) into tokens (linked list).
+- Verilen argümanları(iki boyutlu matris) token olarak çevirir(sıralı liste).
+*/
 t_token	*args_to_token(char **args)
 {
 	t_token	*token;
@@ -25,6 +29,12 @@ t_token	*args_to_token(char **args)
 	return (token);
 }
 
+/*
+- Concatenates the value of the given token.
+- Sets the concatenated value as the new value and adjusts the links.
+- Verilen tokenin value değerini birleştirir.
+- Birleştirilen değeri yeni value olarak ayarlar ve bağlantıları düzenler.
+*/
 void	join_value(t_token *node)
 {
 	char	*new;
@@ -38,6 +48,10 @@ void	join_value(t_token *node)
 	node->prev->flag = node->flag;
 }
 
+/*
+- Sets the values that need to be expanded according to possible scenarios.
+- Genişletilmesi gereken değerleri oluşabilecek durumlara göre ayarlar.
+*/
 void	expander_utils(t_data *data, t_token *node, char *tmp, int i)
 {
 	t_env	*env;
@@ -66,6 +80,10 @@ void	expander_utils(t_data *data, t_token *node, char *tmp, int i)
 	garbage_collecter(str);
 }
 
+/*
+- Selects the values that need to be expanded and initiates the expansion process.
+- Genişletilmesi gereken değerleri seçer ve genişletme işlemini başlatır.
+*/
 void	select_expend_value(t_data *data, t_token *node)
 {
 	char	*tmp;
@@ -92,6 +110,10 @@ void	select_expend_value(t_data *data, t_token *node)
 	}
 }
 
+/*
+- Calls the necessary functions for the expansion process.
+- Genişletme işlemi için gerekli olan fonksiyonları çağırır.
+*/
 void	expander(t_data *data)
 {
 	t_token	*node;

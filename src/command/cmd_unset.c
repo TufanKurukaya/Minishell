@@ -3,16 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_unset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkurukay <tkurukay@student.42kocaeli.com.t +#+  +:+       +#+        */
+/*   By: tkurukay <tkurukay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 11:14:42 by tkurukay          #+#    #+#             */
-/*   Updated: 2024/08/15 03:36:06 by tkurukay         ###   ########.fr       */
+/*   Updated: 2024/08/18 11:15:25 by tkurukay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/libft.h"
 #include "../../inc/minishell.h"
 
+/*
+- Checks if the argument provided for the unset and export commands is valid.
+- unset ve export komutu için girilen argümanın geçerli olup olmadığını kontrol eder.
+*/
 int	check_valid_key(char *key, t_token *node)
 {
 	int	i;
@@ -26,6 +30,10 @@ int	check_valid_key(char *key, t_token *node)
 	return (0);
 }
 
+/*
+- Organizes env variables for the unset command.
+- unset komutu için env değişkenlerini organize eder.
+*/
 void	unset_organizer(t_data *data, t_env *tmp)
 {
 	t_env	*prev;
@@ -46,16 +54,18 @@ void	unset_organizer(t_data *data, t_env *tmp)
 	}
 }
 
+/*
+- The equivalent of the unset command in Bash for the minishell.
+- Bash deki unset komutunun minishelldeki karşılığıdır.
+*/
 void	cmd_unset(t_data *data, t_token *node)
 {
 	t_env	*tmp;
-	t_env	*prev;
 	int		flag;
 
 	flag = 0;
 	while (node)
 	{
-		prev = data->env;
 		if (check_valid_key(node->value, node))
 		{
 			node = node->next;

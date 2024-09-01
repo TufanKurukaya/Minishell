@@ -3,16 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkurukay <tkurukay@student.42kocaeli.com.t +#+  +:+       +#+        */
+/*   By: tkurukay <tkurukay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 11:15:00 by tkurukay          #+#    #+#             */
-/*   Updated: 2024/08/15 03:36:06 by tkurukay         ###   ########.fr       */
+/*   Updated: 2024/08/18 11:37:30 by tkurukay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/libft.h"
 #include "../../inc/minishell.h"
 
+/*
+- Creates a new token.
+- Labels the created token as WORD and sets its value.
+- Determines if the created value needs to be concatenated with the next value.
+- Yeni bir token oluşturur.
+- Oluşan token WORD olarak etiketlenir ve değerini ayarlar.
+- Oluşan değerin bir sonraki değer ile birleşmesi gerekip grerkmediğine karar verir
+*/
 void	lexer_word(t_data *data, int *i)
 {
 	t_token	*node;
@@ -29,6 +37,10 @@ void	lexer_word(t_data *data, int *i)
 	*i = end - 1;
 }
 
+/*
+- Adds the pipe symbol as a token.
+- Pipe işaretini token olarak ekler.
+*/
 void	lexer_pipe(t_data *data)
 {
 	t_token	*node;
@@ -38,6 +50,10 @@ void	lexer_pipe(t_data *data)
 	add_token_back(&data->token, node);
 }
 
+/*
+- Adds all redirections as tokens based on their labels.
+- Tüm rediractionları etiketine göre token olarak ekler.
+*/
 void	lexer_redirect(t_data *data, int *i, enum e_token_type type)
 {
 	t_token	*node;
@@ -61,6 +77,14 @@ void	lexer_redirect(t_data *data, int *i, enum e_token_type type)
 	add_token_back(&data->token, node);
 }
 
+/*
+- Extracts the value between single quotes and adds it as a token.
+- Extracts the value between double quotes and adds it as a token.
+- In both cases, determines if concatenation with the next value is necessary.
+- Tek tırnaklar arasındaki değeri alır ve token olarak ekler.
+- Çift tırnaklar arasındaki değeri alır ve token olarak ekler.
+- Her iki durumda da bir sonraki değer ile birleşmesi gerekip gerekmediğine karar verir.
+*/
 void	lexer_quote(t_data *data, int *i, enum e_token_type type)
 {
 	int		end;
@@ -86,6 +110,10 @@ void	lexer_quote(t_data *data, int *i, enum e_token_type type)
 	*i = end;
 }
 
+/*
+- Splits the incoming command into tokens.
+- Gelen komutu tokenlara ayırır.
+*/
 void	lexer(t_data *data)
 {
 	int	i;

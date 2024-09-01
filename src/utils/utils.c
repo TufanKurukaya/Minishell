@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkurukay <tkurukay@student.42kocaeli.com.t +#+  +:+       +#+        */
+/*   By: tkurukay <tkurukay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 11:15:52 by tkurukay          #+#    #+#             */
-/*   Updated: 2024/08/15 03:40:17 by tkurukay         ###   ########.fr       */
+/*   Updated: 2024/08/18 11:38:09 by tkurukay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 #include "../../inc/minishell.h"
 #include <limits.h>
 
+/*
+- Concatenates the given double character strings.
+- Verilen çift işaretli karakter dizisini birleştirir.
+*/
 char	*ft_str_arr_join(char **str_list, unsigned int str_count)
 {
 	unsigned int	total_len;
@@ -40,6 +44,10 @@ char	*ft_str_arr_join(char **str_list, unsigned int str_count)
 	return (result);
 }
 
+/*
+- Checks if tokens are redirects.
+- Tokenlerin redirect olup olmadığını kontrol eder.
+*/
 int	rdir(t_token *node)
 {
 	if (node->type == HEREDOC)
@@ -48,6 +56,10 @@ int	rdir(t_token *node)
 		|| node->type == APPEND);
 }
 
+/*
+- Checks if tokens are arguments.
+- Tokenlerin argüman olup olmadığını kontrol eder.
+*/
 int	is_args(t_token *node)
 {
 	if (node->type == SINGLE_QUOTE)
@@ -55,6 +67,10 @@ int	is_args(t_token *node)
 	return (node->type == WORD || node->type == DOUBLE_QUOTE);
 }
 
+/*
+- Skips spaces in the given string.
+- Verilen karakter dizisindeki boşlukları atlar.
+*/
 int	skip_space(char *str, int i)
 {
 	while (str[i] && ft_isspace(str[i]))
@@ -62,6 +78,10 @@ int	skip_space(char *str, int i)
 	return (i);
 }
 
+/*
+- Checks if the given character is printable and not a space.
+- Verilen karakterin yazdırılabilir ve boşluk olmadığını kontrol eder.
+*/
 int	ft_validchar(int c)
 {
 	return (!ft_isspace(c) && ft_isprint(c));

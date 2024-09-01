@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkurukay <tkurukay@student.42kocaeli.com.t +#+  +:+       +#+        */
+/*   By: tkurukay <tkurukay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 11:14:49 by tkurukay          #+#    #+#             */
-/*   Updated: 2024/08/15 03:35:30 by tkurukay         ###   ########.fr       */
+/*   Updated: 2024/08/18 11:41:02 by tkurukay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@
 #include <sys/wait.h>
 #include <unistd.h>
 
+/*
+- Checks if the command to be executed contains pipe and redirection.
+- Çalışacak komutta pipe ve redirection olup olmadıpını kontrol eder.
+*/
 void	pars_multiple_cmd(t_data *data)
 {
 	t_token	*node;
@@ -64,6 +68,10 @@ void	parser(t_data *data)
 		pars_multiple_cmd(data);
 }
 
+/*
+- Creates a child process and synchronizes it with the main process.
+- Çocuk işlem oluşturur ve ana işlem ile senkronize eder.
+*/
 void	pars_multiple(t_data *data)
 {
 	t_token	*node;

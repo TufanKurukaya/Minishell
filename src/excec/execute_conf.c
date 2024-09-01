@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_conf.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkurukay <tkurukay@student.42kocaeli.com.t +#+  +:+       +#+        */
+/*   By: tkurukay <tkurukay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 11:14:45 by tkurukay          #+#    #+#             */
-/*   Updated: 2024/08/15 03:36:06 by tkurukay         ###   ########.fr       */
+/*   Updated: 2024/08/18 11:36:59 by tkurukay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@
 #include <sys/wait.h>
 #include <unistd.h>
 
+/*
+- Defines the necessary files for the child process.
+- Çocuk işlemi için gerekli olan dosya tanımlamalarını yapar.
+*/
 void	configure_fd(t_data *data, t_token *node, int in_out[2], int pipfd[2])
 {
 	if (data->in_fd != 0)
@@ -39,6 +43,10 @@ void	configure_fd(t_data *data, t_token *node, int in_out[2], int pipfd[2])
 	}
 }
 
+/*
+- Determines the file definitions needed for the child process.
+- Çocuk işlemi için yapılası gereken dosya tanımlamalarını belirler.
+*/
 void	setup_pipes(t_data *data, t_token *node, int pipfd[2])
 {
 	int	in_out[2];
@@ -56,6 +64,10 @@ void	setup_pipes(t_data *data, t_token *node, int pipfd[2])
 	configure_fd(data, node, in_out, pipfd);
 }
 
+/*
+- Specifies the necessary arguments and path for the child process. Handles redirection operators.
+- Çocuk işlemi için gerekli olan argümanları ve pathi belirler. Yeniden yönlendirme operatörlerini işler.
+*/
 char	**args_and_path(t_data *data, t_token *node, char **path)
 {
 	char	**args;
@@ -84,6 +96,10 @@ char	**args_and_path(t_data *data, t_token *node, char **path)
 	return (args);
 }
 
+/*
+- Executes the necessary operations for the child process.
+- Çocuk işlemi için gerekli olan işlemleri yapar.
+ */
 void	handle_child_process(t_data *data, t_token *node, int pipfd[2],
 		char **env)
 {
@@ -104,6 +120,14 @@ void	handle_child_process(t_data *data, t_token *node, int pipfd[2],
 	ft_exit(NULL);
 }
 
+/*
+- Defines the necessary files for the main process.
+- Waits for the last created child process and updates the exit status.
+- Sets the necessary arguments for the child process.
+- Ana işleyiş için gerekli dosya tanımlamalarını yapar.
+- Sonuncu oluşan çocuk işlemi için bekler ve çıkış değerini günceller.
+- Çocuk işlemi için gerekli argümanları ayarlar.
+*/
 t_token	*handle_parent_process(t_data *data, int pipfd[2], t_token *node)
 {
 	g_signal = EXEC_SIG;

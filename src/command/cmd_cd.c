@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_cd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkurukay <tkurukay@student.42kocaeli.com.t +#+  +:+       +#+        */
+/*   By: tkurukay <tkurukay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 11:14:24 by tkurukay          #+#    #+#             */
-/*   Updated: 2024/08/15 03:39:53 by tkurukay         ###   ########.fr       */
+/*   Updated: 2024/08/18 11:36:24 by tkurukay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 #include <stdio.h>
 #include <unistd.h>
 
+/*
+- Updates the value of the OLDPWD key in the t_env structure (linked list). If it doesn't exist, creates a new one.
+- t_env yapısındaki(sıralı liste) OLDPWD keyinin value'sini günceller. yoksa yenisini oluşturur.
+*/
 void	update_oldpwd(t_data *data, char *pwd)
 {
 	t_env	*node;
@@ -32,6 +36,10 @@ void	update_oldpwd(t_data *data, char *pwd)
 		node->value = pwd;
 }
 
+/*
+- The equivalent of the cd command in Bash for the minishell.
+- Bash deki cd komutunun minishelldeki karşılığıdır.
+*/
 void	cmd_cd(t_data *data, t_token *node, char *path, char *pwd)
 {
 	t_env	*env;

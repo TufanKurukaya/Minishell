@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   alloc.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkurukay <tkurukay@student.42kocaeli.com.t +#+  +:+       +#+        */
+/*   By: tkurukay <tkurukay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 11:13:08 by tkurukay          #+#    #+#             */
-/*   Updated: 2024/08/15 03:39:39 by tkurukay         ###   ########.fr       */
+/*   Updated: 2024/08/18 11:35:58 by tkurukay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@
 #include <string.h>
 #include <sys/errno.h>
 
+/*
+- A static memory area is created and the address of this area is returned.
+- Statik bellek alanı oluşturulur ve bu alanın adresi döndürülür.
+*/
 t_malloc	*get_garbage_c(void)
 {
 	static t_malloc	garbage_c = {NULL, NULL};
@@ -23,6 +27,10 @@ t_malloc	*get_garbage_c(void)
 	return (&garbage_c);
 }
 
+/*
+- Works like malloc, but adds the memory area to the t_malloc structure (linked list).
+- Malloc gibi çalışır, ancak bellek alanını t_malloc yapısına(sıralı liste) ekler.
+*/
 void	*gc_malloc(unsigned int size)
 {
 	void		*ptr;
@@ -41,6 +49,10 @@ void	*gc_malloc(unsigned int size)
 	return (ptr);
 }
 
+/*
+- Adds the memory area given as a parameter to the t_malloc structure (linked list).
+- Parametre olarak verilen bellek alanını t_malloc yapısına(sıralı liste) ekler.
+*/
 void	add_garbage_c(void *ptr)
 {
 	t_malloc	*garbage_c;

@@ -3,18 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkurukay <tkurukay@student.42kocaeli.com.t +#+  +:+       +#+        */
+/*   By: tkurukay <tkurukay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 11:15:36 by tkurukay          #+#    #+#             */
-/*   Updated: 2024/08/15 03:35:30 by tkurukay         ###   ########.fr       */
+/*   Updated: 2024/08/18 11:30:35 by tkurukay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
-#include <stdio.h>
 #include <readline/readline.h>
 #include <signal.h>
+#include <stdio.h>
 
+/*
+- Handles operations based on the current state when a Ctrl + C signal is received.
+- Ctrl + C sinyali geldiğinde ilerleyişin bulunduğu duruma göre işlem yapar.
+*/
 void	handle_sigint(int sig)
 {
 	*get_exit_status() = 128 + sig;
@@ -39,6 +43,10 @@ void	handle_sigint(int sig)
 	}
 }
 
+/*
+- Function that handles the Ctrl + \ signal.
+- Ctrl + \ sinyalini işleyen fonksiyon.
+*/
 void	handle_sigquit(int sig)
 {
 	*get_exit_status() = 128 + sig;
@@ -49,6 +57,10 @@ void	handle_sigquit(int sig)
 	}
 }
 
+/*
+- Determines the action based on the current state when a Ctrl + \ signal is received.
+- Ctrl+ \ sinyalinin işleyisin bulunduğu duruma göre yapması gereken işlemi seçer.
+*/
 void	signal_base(void)
 {
 	if (g_signal == EXEC_SIG)

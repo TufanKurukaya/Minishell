@@ -41,6 +41,9 @@ $(NAME):	$(OBJ)
 
 $(OBJ_DIR)/%.o : %.c
 	@mkdir -p $(@D)
+	@sleep 0.01
+	echo -e "\033[2J\033[H"
+	@echo "\033[0;35m[Libft compiling] \033[1;34m:\033[1;34m $<\033[1;34m\033[0m"
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:

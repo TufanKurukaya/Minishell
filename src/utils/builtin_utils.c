@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkurukay <tkurukay@student.42kocaeli.com.t +#+  +:+       +#+        */
+/*   By: tkurukay <tkurukay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 11:15:40 by tkurukay          #+#    #+#             */
-/*   Updated: 2024/08/15 03:36:06 by tkurukay         ###   ########.fr       */
+/*   Updated: 2024/08/18 11:31:33 by tkurukay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 #include "../../inc/minishell.h"
 #include <unistd.h>
 
+/*
+- Checks for built-in commands.
+- Builtin komutlarının kontrolünü yapar.
+*/
 int	builtins(char *path)
 {
 	if (!is_echo(path, "echo"))
@@ -33,11 +37,19 @@ int	builtins(char *path)
 	return (0);
 }
 
+/*
+- Checks if the command starts with ./ or /
+- Komutun başında ./ veya / var mı kontrol eder.
+*/
 int	is_path(char *str)
 {
 	return ((str[0] == '.' && str[1] == '/') || str[0] == '/');
 }
 
+/*
+- Concatenates the entered command with paths in the path variable and checks if it is an executable file.
+- Girilen komutu path değişkenindeki yollarla birleştirir ve çalıştırılabilir dosya olup olmadığını kontrol eder.
+*/
 char	*check_path(char **path, t_token *node)
 {
 	int		i;
@@ -64,6 +76,11 @@ char	*check_path(char **path, t_token *node)
 	return (print_error(node, ": command not found\n", 127), NULL);
 }
 
+
+/*
+- Allows the child process to execute built-in commands.
+- Çocuk processin builtinleri çalıştırmasını sağlar.
+*/
 int	my_builtin(t_data *data, char **args)
 {
 	t_token	*node;
@@ -89,6 +106,10 @@ int	my_builtin(t_data *data, char **args)
 	return (0);
 }
 
+/*
+- Allows the main process to execute built-in commands.
+- Ana processin builtinleri çalıştırmasını sağlar.
+*/
 void	pars_single_cmd(t_data *data)
 {
 	if (is_args(data->token))

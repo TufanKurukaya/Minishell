@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   use_execve.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkurukay <tkurukay@student.42kocaeli.com.t +#+  +:+       +#+        */
+/*   By: tkurukay <tkurukay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 11:14:54 by tkurukay          #+#    #+#             */
-/*   Updated: 2024/08/15 03:36:06 by tkurukay         ###   ########.fr       */
+/*   Updated: 2024/08/18 11:19:55 by tkurukay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@
 #include <sys/wait.h>
 #include <unistd.h>
 
+/*
+- Executes the necessary operations to run the given command.
+- Girilen komutun çalıştırılması için gerekli olan işlemleri yapar.
+*/
 void	use_execve(t_data *data)
 {
 	pid_t	pid;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkurukay <tkurukay@student.42kocaeli.com.t +#+  +:+       +#+        */
+/*   By: tkurukay <tkurukay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 11:15:43 by tkurukay          #+#    #+#             */
-/*   Updated: 2024/08/15 03:36:06 by tkurukay         ###   ########.fr       */
+/*   Updated: 2024/08/18 11:37:45 by tkurukay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,11 @@
 #include <stdlib.h>
 #include <unistd.h>
 
+
+/*
+- Converts the exit status value to char * and returns it.
+- exit status değerini char * dönüştürür ve döndürür.
+*/
 char	*exit_status(void)
 {
 	char	*status;
@@ -38,6 +43,10 @@ void	close_and_zero(t_data *data, int pipfd[2])
 	}
 }
 
+/*
+- Prints an error message and changes the exit status value based on the necessary error conditions.
+- Gerekli hata durumlarına göre hata mesajı yazdırır ve exit status değerini değiştirir.
+*/
 void	print_error(t_token *node, char *str, int exit_status)
 {
 	ft_putstr_fd("minishell: ", 2);
@@ -47,6 +56,10 @@ void	print_error(t_token *node, char *str, int exit_status)
 	*get_exit_status() = exit_status;
 }
 
+/*
+- Completes all operations and terminates the program cleanly.
+- tüm işlemleri bitirir ve programı temizbir şekilde sonlandırır.
+*/
 void	ft_exit(char *str)
 {
 	gc_free();

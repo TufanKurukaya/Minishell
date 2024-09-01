@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_exit.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkurukay <tkurukay@student.42kocaeli.com.t +#+  +:+       +#+        */
+/*   By: tkurukay <tkurukay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 11:14:33 by tkurukay          #+#    #+#             */
-/*   Updated: 2024/08/15 03:36:06 by tkurukay         ###   ########.fr       */
+/*   Updated: 2024/08/18 11:13:48 by tkurukay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 #include "../../inc/minishell.h"
 #include <stdlib.h>
 
+/*
+- Checks if the given string is a valid number.
+- Verilen stringin geçerli bir sayı olup olmadığını kontrol eder.
+*/
 int	ft_str_is_numeric(char *str)
 {
 	int	i;
@@ -42,6 +46,10 @@ int	ft_str_is_numeric(char *str)
 	return (i);
 }
 
+/*
+- Validates the arguments provided for the exit command.
+- exit komutu için girilen argümanların geçerliliğini kontrol eder.
+*/
 void	chechk_valid_exit(t_token *node)
 {
 	while (node)
@@ -60,6 +68,10 @@ void	chechk_valid_exit(t_token *node)
 	exit(*get_exit_status());
 }
 
+/*
+- The equivalent of the exit command in Bash for the minishell.
+- Bash deki exit komutunun minishelldeki karşılığıdır.
+*/
 void	cmd_exit(t_token *node)
 {
 	if (node)
@@ -87,6 +99,10 @@ void	cmd_exit(t_token *node)
 	exit(*get_exit_status());
 }
 
+/*
+- Defines a static variable and returns its address.
+- Statik bir değişgen tanımayarak onun adresini döndürür.
+*/
 int	*get_exit_status(void)
 {
 	static int	exit_status = 0;
@@ -94,6 +110,10 @@ int	*get_exit_status(void)
 	return (&exit_status);
 }
 
+/*
+- Updates the exit status based on signals or normal exit conditions.
+- exit statusu sinyallere veya normal çıkış durumuna göre günceller.
+*/
 void	update_exit_status(void)
 {
 	if (WIFEXITED(*get_exit_status()))

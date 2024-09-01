@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_pwd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkurukay <tkurukay@student.42kocaeli.com.t +#+  +:+       +#+        */
+/*   By: tkurukay <tkurukay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 11:14:39 by tkurukay          #+#    #+#             */
-/*   Updated: 2024/08/15 03:35:30 by tkurukay         ###   ########.fr       */
+/*   Updated: 2024/08/18 11:36:47 by tkurukay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@
 #include <sys/errno.h>
 #include <unistd.h>
 
+/*
+- Gets the current directory from env variables. If the variable doesn't exist, creates a new one.
+- Bulunduğu dizini env değişkenlerinden alır. Değiken yoksa yenisini oluşturur.
+*/
 t_env	*get_pwd(t_data *data)
 {
 	t_env	*node;
@@ -35,6 +39,10 @@ t_env	*get_pwd(t_data *data)
 	return (node);
 }
 
+/*
+- The equivalent of the pwd command in Bash for the minishell.
+- Bash deki pwd komutunun minishelldeki karşılığıdır.
+*/
 void	cmd_pwd(void)
 {
 	char	*pwd;

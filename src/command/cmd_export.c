@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_export.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkurukay <tkurukay@student.42kocaeli.com.t +#+  +:+       +#+        */
+/*   By: tkurukay <tkurukay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 11:14:37 by tkurukay          #+#    #+#             */
-/*   Updated: 2024/08/15 03:36:06 by tkurukay         ###   ########.fr       */
+/*   Updated: 2024/08/18 11:14:39 by tkurukay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 #include "../../inc/minishell.h"
 #include <stdio.h>
 
+/*
+- Creates three variables needed for the export command.
+- export komutu için gerekli olan üç değişkeni oluşturur.
+*/
 char	*creat_key_value_len(t_token *node, char **value, int *len)
 {
 	char	*key;
@@ -34,6 +38,10 @@ char	*creat_key_value_len(t_token *node, char **value, int *len)
 	return (key);
 }
 
+/*
+- Prints env variables when the export command is called without arguments.
+- export komutu argümansız çağrıldığında env değişkenlerini yazdırır.
+*/
 void	print_export(t_data *data)
 {
 	t_env	*env;
@@ -50,6 +58,10 @@ void	print_export(t_data *data)
 	}
 }
 
+/*
+- Organizes env variables for the export command.
+- export komutu için env değişkenlerini organize eder.
+*/
 void	env_organize(char *key, char *value, t_data *data)
 {
 	t_env	*env;
@@ -70,6 +82,10 @@ void	env_organize(char *key, char *value, t_data *data)
 	}
 }
 
+/*
+- The equivalent of the export command in Bash for the minishell.
+- Bash deki export komutunun minishelldeki karşılığıdır.
+*/
 void	cmd_export(t_data *data, t_token *node)
 {
 	char	*key;
